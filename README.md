@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/valencra/Stack-Overflow-Model-Unit-Tests.svg?branch=master)](https://travis-ci.org/valencra/Stack-Overflow-Model-Unit-Tests)
+
 ## Welcome to Stack Overboard
 
 This is a WIP (Work In Progress) but the basic idea is this:
