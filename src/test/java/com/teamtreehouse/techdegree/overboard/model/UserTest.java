@@ -1,5 +1,6 @@
 package com.teamtreehouse.techdegree.overboard.model;
 
+import com.teamtreehouse.techdegree.overboard.exc.AnswerAcceptanceException;
 import com.teamtreehouse.techdegree.overboard.exc.VotingException;
 import org.junit.Before;
 import org.junit.Rule;
@@ -83,5 +84,12 @@ public class UserTest {
 
         answerer.downVote(answer);
     }
-    
+
+    @Test
+    public void acceptingAnswerOnlyPermittedToQuestioner() throws Exception {
+        thrown.expect(AnswerAcceptanceException.class);
+        thrown.expectMessage(String.format("Only %s can accept this answer as it is their question", questioner.getName()));
+
+        answerer.acceptAnswer((Answer) answer);
+    }
 }
