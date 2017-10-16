@@ -46,6 +46,13 @@ public class UserTest {
     }
 
     @Test
+    public void downvotingAnswerDecreasesAnswererReputationBy1() throws Exception {
+        voter.downVote(answer);
+
+        assertEquals(-1, answerer.getReputation());
+    }
+
+    @Test
     public void acceptingAnswerRaisesAnswererReputationBy15() throws Exception {
         questioner.acceptAnswer((Answer) answer);
 
