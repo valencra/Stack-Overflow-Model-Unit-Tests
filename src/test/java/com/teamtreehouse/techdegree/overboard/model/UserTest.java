@@ -11,6 +11,8 @@ public class UserTest {
     private User questioner;
     private User answerer;
     private User voter;
+    private Post question;
+    private Post answer;
 
     @Before
     public void setUp() throws Exception {
@@ -18,12 +20,12 @@ public class UserTest {
         questioner = new User(board, "questioner");
         answerer = new User(board, "answerer");
         voter = new User(board, "voter");
+        question = questioner.askQuestion("What is Java?");
+        answer = answerer.answerQuestion((Question) question, "Java is a general-purpose programming language.");
     }
 
     @Test
     public void upvotingQuestionRaisesQuestionerReputationBy5() throws Exception {
-        Post question = questioner.askQuestion("What is Java?");
-
         voter.upVote(question);
 
         assertEquals(5, questioner.getReputation());
@@ -31,9 +33,6 @@ public class UserTest {
 
     @Test
     public void upvotingAnswerRaisesAnswererReputationBy10() throws Exception {
-        Post question = questioner.askQuestion("What is Java?");
-        Post answer = answerer.answerQuestion((Question) question, "Java is a general-purpose programming language.");
-
         voter.upVote(answer);
 
         assertEquals(10, answerer.getReputation());
@@ -41,9 +40,6 @@ public class UserTest {
 
     @Test
     public void acceptingAnswerRaisesAnswererReputationBy15() throws Exception {
-        Post question = questioner.askQuestion("What is Java?");
-        Post answer = answerer.answerQuestion((Question) question, "Java is a general-purpose programming language.");
-
         questioner.acceptAnswer((Answer) answer);
 
         assertEquals(15, answerer.getReputation());
