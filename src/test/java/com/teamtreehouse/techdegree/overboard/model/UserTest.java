@@ -28,4 +28,15 @@ public class UserTest {
 
         assertEquals(5, questioner.getReputation());
     }
+
+    @Test
+    public void upvotingAnswerRaisesAnswererReputationBy10() throws Exception {
+        Post question = questioner.askQuestion("What is Java?");
+        Post answer = answerer.answerQuestion((Question) question, "Java is a general-purpose programming language.");
+
+        questioner.upVote(answer);
+
+        assertEquals(10, answerer.getReputation());
+    }
+    
 }
